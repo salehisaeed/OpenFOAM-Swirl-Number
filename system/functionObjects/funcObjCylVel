@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+coordinateTransform
+{
+    type    fieldCoordinateSystemTransform;
+    libs    (fieldFunctionObjects);
+    log     false;
+    fields  ( U );
+
+    executeControl  timeStep;
+    executeInterval 1;
+    writeControl    writeTime;
+    // writeInterval   -1;
+
+    coordinateSystem
+    {
+        type    cylindrical;
+        origin  (0 0 0);
+        rotation
+        {
+            type cylindrical;
+            axis (0 0 -1);  //< local Z
+        }
+    }
+}
+
+// ************************************************************************* //

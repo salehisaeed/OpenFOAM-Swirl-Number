@@ -1,0 +1,91 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+tangentialMomentum
+{
+    type    coded;
+    name    tangentialMomentum;
+    libs    ( utilityFunctionObjects );
+    executeControl  timeStep;
+    executeInterval 1;
+    writeControl    writeTime;
+    // writeInterval   -1;
+    log     false;
+
+    coeffs
+    {
+        origin      (0 0 0);
+        axis        (0 0 1);
+    }
+
+    codeContext
+    {
+        verbose     true;
+    }
+
+    codeData
+    #{
+        vector origin;
+        vector axis;
+    #};
+
+    codeRead
+    #{
+        const dictionary& coeffs = dict.optionalSubDict("coeffs");
+        const dictionary& context = this->codeContext();
+
+        origin = coeffs.get<vector>("origin");
+        axis   = normalised(coeffs.get<vector>("axis"));
+
+        if (context.getOrDefault<bool>("verbose", false))
+        {
+            Log << "tangentialMomentum: axis = " << axis << ", origin = " << origin << nl;
+        }
+    #};
+
+    codeExecute
+    #{
+        const auto& cc = mesh().C();
+        const auto& UCyl = 
+            mesh().lookupObject<volVectorField>("U:Transformed"); // cylindrical U
+
+        auto* tmPtr =
+            mesh().getObjectPtr<volScalarField>("tangentialMomentum");
+
+        if (!tmPtr)
+        {
+            Info<< "Create tangential momentum field" << nl;
+            tmPtr = new volScalarField
+            (
+                IOobject
+                (
+                    "tangentialMomentum",
+                    mesh().time().timeName(),
+                    mesh(),
+                    IOobject::NO_READ,
+                    IOobject::AUTO_WRITE,
+                    IOobject::REGISTER
+                ),
+                mesh(),
+                dimVelocity*dimLength
+            );
+
+            regIOobject::store(tmPtr);
+        }
+
+        auto& tm = *tmPtr;
+        auto& tmField = tm.primitiveFieldRef();
+
+        forAll(tmField, celli)
+        {
+            const scalar uTheta = UCyl[celli].component(vector::Y); // assuming Y = tangntial 
+            const scalar r = mag(axis ^ (cc[celli] - origin));      // r = |axis × (r - r0)|
+            tmField[celli] = uTheta * r;
+        }
+    #};
+}

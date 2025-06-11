@@ -1,0 +1,100 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2412                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+readFields1
+{
+    type            readFields;
+    libs            (fieldFunctionObjects);
+    fields          (tangentialMomentum Uz);
+    readOnStart     true;
+    region          region0;
+    enabled         true;
+    log             false;
+    executeControl  timeStep;
+    executeInterval 1;
+    // writeControl    timeStep;
+    // writeInterval   1;
+}
+
+// General setup for surfaceFieldValue_num
+__surfaceFieldValue
+{
+    type            surfaceFieldValue;
+    libs            (fieldFunctionObjects);
+    log             false;
+    enabled         true;
+    writeControl    timeStep;
+    writeInterval   1;
+    writeFields     false;
+    // surfaceFormat   vtk;
+    // operation       weightedSum;
+    // weightField     phi;
+    operation       weightedAreaIntegrate;
+    weightField     rhoU;    
+}
+
+// Sampling
+// Sample volume fields to surfaces and hold on registry.
+sampled
+{
+    type    surfaces;
+    libs    (sampling);
+    log     false;
+    executeControl  timeStep;
+    executeInterval 1;
+    // writeControl    none;
+    // sampleOnExecute true;
+    surfaceFormat   none;
+    fields          ( rhoU tangentialMomentum Uz );
+
+    _plane
+    {
+        type    plane;
+        source  cells;
+        store   true;
+        planeType   pointAndNormal;
+    }
+
+    surfaces
+    {
+        DT_middle
+        {
+            ${_plane}
+            pointAndNormalDict
+            {
+                normal (0 0 1);
+                point  (0 0 -0.105);
+            }
+        }
+    }
+}
+
+swirl_numerator_DT_middle
+{
+    ${__surfaceFieldValue}
+    regionType      functionObjectSurface;
+    name            sampled.DT_middle;
+    fields          ( tangentialMomentum );
+}
+
+swirl_denominator_DT_middle
+{
+    ${__surfaceFieldValue}
+    regionType      functionObjectSurface;
+    name            sampled.DT_middle;
+    fields          ( Uz );
+
+}
+
+
+// * * * * * * * * * * * * * * * * * Cleanup * * * * * * * * * * * * * * * * //
+
+#remove "__.*"
+
+
+// ************************************************************************* //

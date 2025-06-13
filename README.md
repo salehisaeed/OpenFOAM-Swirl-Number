@@ -27,7 +27,7 @@ Where
 
 ## Function Objects and Code Structure
 
-The swirl number is computed using several modular function objects:
+The swirl number is computed using `funcObjSwirlNumber` functionObject which consists of several other modular functionObjects:
 
 | File                        | Description                                                                                              |
 | --------------------------- | -------------------------------------------------------------------------------------------------------- |
@@ -36,7 +36,7 @@ The swirl number is computed using several modular function objects:
 | `funcObjDerivedFields`      | Computes derived fields like $\rho \mathbf{U}$                                                           |
 | `funcObjTangentialMomentum` | Computes local tangential momentum                                                                       |
 | `funcObjlMomentumFlux`      | Computes the axial flux of tangential and axial momentum (numerator and denominator of the swirl number) |
-| `funcObjSwirlNumber`        | Aggregates numerator and denominator to compute the swirl number                                         |
+
 
 
 

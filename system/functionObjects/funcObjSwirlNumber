@@ -3,4 +3,4 @@
 #include "funcObjDerivedFields" // To calculate rhoU (needed for flux)
 #include "funcObjCylVel" // To calculate angular velocity
 #include "funcObjTangentialMomentum" // To calculate moment of momentum
-#include "funcObjTangentialMomentumFlux" // To calculate the integrals in the numerator and denominator of the swirl number
+#include "funcObjMomentumFlux" // To calculate the integrals in the numerator and denominator of the swirl number

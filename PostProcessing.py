@@ -21,7 +21,7 @@ print(f"🔎 Found regions: {regions}")
 # --- Process Each Region ---
 swirl_data = {}
 
-plt.figure(figsize=(8, 5))
+fig = plt.figure(figsize=(8, 5))
 
 for region in regions:
     print(f"\nProcessing region: '{region}'")
@@ -52,3 +52,4 @@ plt.tight_layout()
 plt.legend(loc="best", fancybox=True, framealpha=0.95, fontsize=13)
 plt.show()
 
+fig.savefig(base_directory / "docs/figures/swirl_number_plot.png", dpi=300, bbox_inches='tight')

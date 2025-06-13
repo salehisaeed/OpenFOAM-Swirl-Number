@@ -17,15 +17,15 @@ $$ S = \frac{\int_A \rho u_\theta u_z r \, \mathrm{d}A}{R \int_A \rho u_z^2 \, \
 
 Where
 * $\rho$ is the density
-* $u\_\theta$ is the azimuthal velocity
-* $u\_z$ is the axial velocity
+* $u_\theta$ is the tangential velocity
+* $u_z$ is the axial velocity
 * $r$ is the radial distance to the axis
 * $R$ is a characteristic radius
 * $A$ is the area of the cross-section
 
 
 
-## 🛠️ Function Objects and Code Structure
+## Function Objects and Code Structure
 
 The swirl number is computed using several modular function objects:
 

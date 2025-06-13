@@ -27,7 +27,7 @@ Where
 
 ## Function Objects and Code Structure
 
-The swirl number is computed using `funcObjSwirlNumber` functionObject which consists of several other modular functionObjects:
+The swirl number is computed using a functionObject (`funcObjSwirlNumber`) which consists of several other modular functionObjects:
 
 | File                        | Description                                                                                              |
 | --------------------------- | -------------------------------------------------------------------------------------------------------- |

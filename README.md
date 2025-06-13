@@ -13,7 +13,7 @@ This repository provides a full pipeline for computing the swirl number in OpenF
 
 The **swirl number** is a dimensionless measure that quantifies the ratio of axial flux of angular momentum to axial flux of axial momentum, It is commonly computed as
 
-$$ S = \frac{\int_A \rho u_\theta u_z r \mathrm{d}A}{R \int_A \rho u_z^2 \mathrm{d}A} $$
+$$ S = \frac{\int_A \rho u_\theta u_z r {\,} \mathrm{d}A}{R \int_A \rho u_z^2 {\,} \mathrm{d}A} $$
 
 Where
 * $\rho$ is the density

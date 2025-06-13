@@ -3,7 +3,7 @@
 <!-- ![Swirl number over time](docs/figures/swirl_number_plot.png)
 ![Swirl number over time](docs/figures/vectors.png) -->
 <p align="center">
-  <img src="docs/figures/vectors.png" alt="Velocity vectors" width="45%" />
+  <img src="docs/figures/vectors.png" alt="Velocity vectors" width="50%" />
   <img src="docs/figures/swirl_number_plot.png" alt="Swirl number over time" width="45%" />
 </p>
 

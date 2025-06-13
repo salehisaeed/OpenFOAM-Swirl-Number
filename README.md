@@ -9,7 +9,7 @@
 
 This repository provides a full pipeline for computing the swirl number in OpenFOAM.
 
-## Theoretical Background
+## Theoretical background
 
 The **swirl number** is a dimensionless measure that quantifies the ratio of axial flux of angular momentum to axial flux of axial momentum, It is commonly computed as
 
@@ -37,12 +37,12 @@ The swirl number is computed using a functionObject (`funcObjSwirlNumber`) which
 | `funcObjTangentialMomentum` | Computes local tangential momentum                                                                       |
 | `funcObjlMomentumFlux`      | Computes the axial flux of tangential and axial momentum (numerator and denominator of the swirl number) |
 
+Ideally, the swirl number can be computed using a unified functionObject, but this is the best that I could develop a short time. Maybe I develop a better version in the future, if I can find the time for it.
 
 
+## Postprocessing
 
-## Postprocessing Output
-
-The arbitrary surface is sampled using a `plane` geometry and processed using `surfaceFieldValue`. The Python script `compute_swirl_number.py` loads the numerator and denominator files, computes the swirl number at each time step, and plots the swirl number over time.
+The arbitrary surface is sampled using a `plane` geometry and processed using `surfaceFieldValue`. The Python script `compute_swirl_number.py` loads the numerator and denominator files, computes the swirl number at each time step, and plots the swirl number over time (the figure above).
 
 
 

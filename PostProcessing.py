@@ -44,12 +44,11 @@ for region in regions:
 # plt.style.use("seaborn-v0_8-whitegrid")
 # plt.axi
 plt.xlabel("Time (s)", fontsize=15)
-plt.ylabel("Swirl Number (S)", fontsize=15)
+plt.ylabel("Swirl Number ($S$)", fontsize=15)
 plt.xticks(fontsize=13)
 plt.yticks(fontsize=13)
 plt.grid(True, which='both', linestyle='--', linewidth=0.7, alpha=0.7)
 plt.tight_layout()
 plt.legend(loc="best", fancybox=True, framealpha=0.95, fontsize=13)
-plt.show()
-
 fig.savefig(base_directory / "docs/figures/swirl_number_plot.png", dpi=300, bbox_inches='tight')
+plt.show()

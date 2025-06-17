@@ -7,13 +7,9 @@
   <img src="docs/figures/swirl_number_plot.png" alt="Swirl number over time" width="45%" />
 </p>
 
-This repository provides a full pipeline for computing the swirl number in OpenFOAM.
+This repository provides a complete pipeline for computing the **swirl number** in OpenFOAM. The swirl number is a dimensionless quantity that characterizes the degree of swirl motion in a flow. It is defined as the ratio of the axial flux of angular momentum to the axial flux of axial momentum, expressed as
 
-## Theoretical background
-
-The **swirl number** is a dimensionless measure that quantifies the ratio of axial flux of angular momentum to axial flux of axial momentum, It is commonly computed as
-
-$$ S = \frac{\displaystyle \int_A \rho u_\theta u_z r \mathrm{d}A}{R \displaystyle \int_A \rho u_z^2 \mathrm{d}A} $$
+$$ S = \frac{\displaystyle \int_A \rho u_\theta u_z r \mathrm{d}A}{R \displaystyle \int_A \rho u_z^2 \mathrm{d}A} $$ 
 
 Where
 * $\rho$ is the density

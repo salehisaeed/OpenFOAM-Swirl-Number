@@ -48,7 +48,7 @@ The arbitrary surface is sampled using a `plane` geometry and processed using `s
 
 ## Acknowledgments
 
-This repository utilizes the OpenFOAM tutorial case `axialTurbine_rotating_oneBlade` provided by **Professor Håkan Nilsson** (Chalmers University of Technology). The tutorial case is now part of the official OpenCFD release of OpenFOAM. For more information about the case, visit the tutorial at
+This repository utilizes the OpenFOAM tutorial case `axialTurbine_rotating_oneBlade` provided by Håkan Nilsson (Chalmers University of Technology). The tutorial case is now part of the official OpenCFD release of OpenFOAM. For more information about the case, visit the tutorial at
 
 ```
 $FOAM_TUTORIALS/incompressible/pimpleFoam/RAS/axialTurbine_rotating_oneBlade/
